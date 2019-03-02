@@ -1,0 +1,31 @@
+import React, { Fragment } from 'react';
+import {
+  BrowserRouter, Switch, Route
+} from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import App from './components/App';
+
+import HomePage from './components/Homepage/Home';
+import Footer from './components/common/Footer/Footer'
+import Navbar from './components/common/Navbar/Navbar';
+import store from './store';
+
+const Routes = () => (
+    <Provider store={store}>
+        <BrowserRouter>
+            <Fragment>
+                <header>
+                    <Navbar />
+                </header>
+                <Switch>
+                    <Route exact path="/" component={HomePage}/>
+                    <App />
+                </Switch>
+                <Footer/>
+            </Fragment>
+        </BrowserRouter>
+    </Provider>
+);
+
+export default Routes;
