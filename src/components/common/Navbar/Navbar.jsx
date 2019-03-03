@@ -36,6 +36,7 @@ class Navbar extends Component {
                         </svg>
                     </Link>
                     <Link className="py-2 d-none d-md-inline-block" to="/sources">Sources</Link>
+                    <Link className="py-2 d-none d-md-inline-block" to="/top-headlines">Top headlines</Link>
                     {
                         isAuth
                         ? <button className="py-2 d-none d-md-inline-block btn-link" onClick={this.logout}>

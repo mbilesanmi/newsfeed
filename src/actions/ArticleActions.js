@@ -25,11 +25,24 @@ const resolveErrors = (error) => {
   }
 };
 
-export const getArticles = (sourceId = '') => dispatch =>
-    axios.get(`https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=74b2693e67c3460c81423e7d1d6d1508`)
-        .then(response => {
-            dispatch(getArticlesSuccess(response.data.articles));
-        })
-        .catch(error => {
-            throw dispatch(passErrorMessage(resolveErrors(error)));
-        });
+export const getArticles = (sourceId = '', category='', country='') => dispatch => {
+  let url = 'https://newsapi.org/v2/top-headlines?apiKey=74b2693e67c3460c81423e7d1d6d1508';
+
+  if (sourceId) {
+    url = `${url}&sources=${sourceId}`
+  } else {
+    if (category) {
+      url = `${url}&category=${category}`
+    }
+    if (country) {
+      url = `${url}&country=${country}`
+    }
+  }
+  return axios.get(url)
+    .then(response => {
+        dispatch(getArticlesSuccess(response.data.articles));
+    })
+    .catch(error => {
+        throw dispatch(passErrorMessage(resolveErrors(error)));
+    });
+}

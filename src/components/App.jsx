@@ -12,6 +12,7 @@ import './App.css';
 import Articles from './Articles/Articles';
 import Login from './User/Login';
 import Sources from './Sources/Sources';
+import TopHeadlines from './Articles/TopHeadlines';
 
 class App extends Component {
   state = {
@@ -42,6 +43,7 @@ class App extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/sources" component={Sources} />
         <Route exact path="/source/:sourceId" component={Articles} />
+        <Route exact path="/top-headlines" component={TopHeadlines} />
       </main>
     )
   }

@@ -4,8 +4,6 @@ import {
     ERROR_MESSAGE, SOURCES, SUCCESS_MESSAGE
 } from './ActionTypes';
 
-// const { REACT_APP_apiUrl } = process.env;
-
 export const passSuccessMessage = successMessage =>
   ({ type: SUCCESS_MESSAGE, successMessage });
 
