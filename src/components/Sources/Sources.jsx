@@ -38,7 +38,7 @@ class Sources extends Component {
                 .then(() => this.setState({ sources: this.props.sources }, () =>
                     this.props.sources.length > 0
                     ? ''
-                    : toastr.error('No articles found for your selected filter.')
+                    : toastr.error('No sources found for your selected filter.')
                 ))
                 .catch(() => toastr.error(this.props.message));
         });
@@ -51,7 +51,7 @@ class Sources extends Component {
                 .then(() => this.setState({ sources: this.props.sources }, () =>
                     this.props.sources.length > 0
                     ? ''
-                    : toastr.error('No articles found for your selected filter.')
+                    : toastr.error('No sources found for your selected filter.')
                 ))
                 .catch(() => toastr.error(this.props.message));
         });

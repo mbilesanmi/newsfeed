@@ -25,7 +25,7 @@ const resolveErrors = (error) => {
   }
 };
 
-export const getArticles = (sourceId = '', category='', country='') => dispatch => {
+export const getArticles = (sourceId = '', country='', category='') => dispatch => {
   let url = 'https://newsapi.org/v2/top-headlines?apiKey=74b2693e67c3460c81423e7d1d6d1508';
 
   if (sourceId) {

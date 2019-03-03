@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Select from 'react-select';
+import toastr from 'toastr';
 
 // ACTIONS
 import { getArticles } from '../../actions/ArticleActions';
@@ -12,24 +14,81 @@ class Articles extends Component {
     state = {
         articles: [],
         selectedCategory: '',
-        selectedCountry: 'us'
+        selectedCountry: '',
+        search: ''
     }
 
     componentDidMount = () => {
-        const { selectedCountry } = this.state;
-
-        this.props.getArticles('', '', selectedCountry)
+        this.props.getArticles('', 'us', '')
             .then(() => this.setState({ articles: this.props.articles }));
     }
 
+    categoryFilterChanges = (category) => {
+        this.setState({ selectedCategory: category }, () => {
+            const { selectedCountry, selectedCategory } = this.state;
+            this.props.getArticles('', selectedCountry['value'], selectedCategory['value'])
+                .then(() => this.setState({ articles: this.props.articles }, () =>
+                    this.props.articles.length > 0
+                    ? ''
+                    : toastr.error('No articles found for your selected filter.')
+                ))
+                .catch(() => toastr.error(this.props.message));
+        });
+    }
+
+    countryFilterChanges = (country) => {
+        this.setState({ selectedCountry: country }, () => {
+            const { selectedCountry, selectedCategory } = this.state;
+            this.props.getArticles('', selectedCountry['value'], selectedCategory['value'])
+                .then(() => this.setState({ articles: this.props.articles }, () =>
+                    this.props.articles.length > 0
+                    ? ''
+                    : toastr.error('No articles found for your selected filter.')
+                ))
+                .catch(() => toastr.error(this.props.message));
+        });
+    }
+
     render = () => {
-        const { articles } = this.state;
+        const {
+            articles,
+            selectedCategory,
+            selectedCountry
+        } = this.state;
 
         return (
             <>
                 <div className="position-relative overflow-hidden p-2 p-md-3 m-md-4 text-center bg-light">
                     <div className="col-md-5 mx-auto my-3">
-                        <h1 className="display-4 font-weight-normal">News from </h1>
+                        <h1 className="display-4 font-weight-normal">
+                            News from 
+                        </h1>
+                    </div>
+                </div>
+
+                <div className="row mt-3 mb-5">
+                    <h5 className="col-lg-12">Filter by:</h5>
+                    <div className="col-xs-12 col-md-4">
+                        <div className="row">
+                            <span className="col-lg-12">Category: </span>
+                            <Select
+                                className="col-lg-12"
+                                name="categories"
+                                value={selectedCategory}
+                                onChange={this.categoryFilterChanges}
+                                options={categories} />
+                        </div>
+                    </div>
+                    <div className="col-xs-12 col-md-4">
+                        <div className="row">
+                            <span className="col-lg-12">Country: </span>
+                            <Select
+                                className="col-lg-12"
+                                name="countries"
+                                value={selectedCountry}
+                                onChange={this.countryFilterChanges}
+                                options={countryList} />
+                        </div>
                     </div>
                 </div>
 
