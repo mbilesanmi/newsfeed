@@ -49,11 +49,30 @@ class Articles extends Component {
         });
     }
 
+    handleSearchChange = (e) => {
+        const { name, value } = e.target;
+
+        this.setState({ [name]: value });
+    }
+
+    submitSearch = (e) => {
+        e.preventDefault();
+        const { search } = this.state;
+        this.props.getArticles('', '', '', search)
+            .then(() => this.setState({ articles: this.props.articles }, () =>
+                this.props.articles.length > 0
+                ? ''
+                : toastr.error('No articles found for your selected filter.')
+            ))
+            .catch(() => toastr.error(this.props.message));
+    }
+
     render = () => {
         const {
             articles,
             selectedCategory,
-            selectedCountry
+            selectedCountry,
+            search
         } = this.state;
 
         return (
@@ -66,6 +85,22 @@ class Articles extends Component {
                     </div>
                 </div>
 
+                <div className="row mt-3 mb-5">
+                    <h5 className="col-lg-12">Search</h5>
+                    <div className="col-lg-11 mb-2">
+                        <input
+                            type="text"
+                            name="search"
+                            value={search}
+                            onChange={this.handleSearchChange}
+                            className="form-control" />
+                    </div>
+                    <div className="col-lg-1 mb-2">
+                        <button className="btn btn-info" onClick={this.submitSearch} type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </div>
                 <div className="row mt-3 mb-5">
                     <h5 className="col-lg-12">Filter by:</h5>
                     <div className="col-xs-12 col-md-4">

@@ -25,11 +25,13 @@ const resolveErrors = (error) => {
   }
 };
 
-export const getArticles = (sourceId = '', country='', category='') => dispatch => {
+export const getArticles = (sourceId = '', country='', category='', search='') => dispatch => {
   let url = 'https://newsapi.org/v2/top-headlines?apiKey=74b2693e67c3460c81423e7d1d6d1508';
 
   if (sourceId) {
     url = `${url}&sources=${sourceId}`
+  } else if (search) {
+    url = `${url}&q=${search}`
   } else {
     if (category) {
       url = `${url}&category=${category}`
