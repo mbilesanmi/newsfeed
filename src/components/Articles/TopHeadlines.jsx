@@ -24,9 +24,9 @@ class Articles extends Component {
     }
 
     categoryFilterChanges = (category) => {
-        this.setState({ selectedCategory: category }, () => {
+        this.setState({ selectedCategory: category, search: '' }, () => {
             const { selectedCountry, selectedCategory } = this.state;
-            this.props.getArticles('', selectedCountry['value'], selectedCategory['value'])
+            this.props.getArticles('', selectedCountry['value'], selectedCategory['value'], '')
                 .then(() => this.setState({ articles: this.props.articles }, () =>
                     this.props.articles.length > 0
                     ? ''
@@ -37,9 +37,9 @@ class Articles extends Component {
     }
 
     countryFilterChanges = (country) => {
-        this.setState({ selectedCountry: country }, () => {
+        this.setState({ selectedCountry: country, search: '' }, () => {
             const { selectedCountry, selectedCategory } = this.state;
-            this.props.getArticles('', selectedCountry['value'], selectedCategory['value'])
+            this.props.getArticles('', selectedCountry['value'], selectedCategory['value'], '')
                 .then(() => this.setState({ articles: this.props.articles }, () =>
                     this.props.articles.length > 0
                     ? ''
