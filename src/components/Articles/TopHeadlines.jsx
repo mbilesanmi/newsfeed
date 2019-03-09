@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import toastr from 'toastr';
+import {
+    FacebookIcon,
+    FacebookShareButton,
+    TwitterIcon,
+    TwitterShareButton,
+    WhatsappIcon,
+    WhatsappShareButton,
+} from 'react-share';
 
 // ACTIONS
 import { getArticles } from '../../actions/ArticleActions';
@@ -150,6 +158,21 @@ class Articles extends Component {
                                                     Read more >>>
                                                 </a>
                                             </div>
+                                        </div>
+                                        <div className="m-2">
+                                            <FacebookShareButton url={article.url} title={article.title}>
+                                                <FacebookIcon size={32} round={true} />
+                                            </FacebookShareButton>
+                                        </div>
+                                        <div className="m-2">
+                                            <TwitterShareButton url={article.url} title={article.title}>
+                                                <TwitterIcon size={32} round={true} />
+                                            </TwitterShareButton>
+                                        </div>
+                                        <div className="m-2">
+                                            <WhatsappShareButton url={article.url} title={article.title}>
+                                                <WhatsappIcon size={32} round={true} />
+                                            </WhatsappShareButton>
                                         </div>
                                     </div>
                                 </div>
