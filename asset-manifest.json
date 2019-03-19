@@ -1,13 +1,13 @@
 {
-  "main.css": "/my-app/static/css/main.3ad8a4ad.chunk.css",
-  "main.js": "/my-app/static/js/main.787b8521.chunk.js",
-  "main.js.map": "/my-app/static/js/main.787b8521.chunk.js.map",
-  "runtime~main.js": "/my-app/static/js/runtime~main.caff8f44.js",
-  "runtime~main.js.map": "/my-app/static/js/runtime~main.caff8f44.js.map",
-  "static/js/2.3359967a.chunk.js": "/my-app/static/js/2.3359967a.chunk.js",
-  "static/js/2.3359967a.chunk.js.map": "/my-app/static/js/2.3359967a.chunk.js.map",
-  "index.html": "/my-app/index.html",
-  "precache-manifest.9ad2b3b2324cefc462853152a6ccec97.js": "/my-app/precache-manifest.9ad2b3b2324cefc462853152a6ccec97.js",
-  "service-worker.js": "/my-app/service-worker.js",
-  "static/css/main.3ad8a4ad.chunk.css.map": "/my-app/static/css/main.3ad8a4ad.chunk.css.map"
+  "main.css": "/newsfeed/static/css/main.3ad8a4ad.chunk.css",
+  "main.js": "/newsfeed/static/js/main.70d872cf.chunk.js",
+  "main.js.map": "/newsfeed/static/js/main.70d872cf.chunk.js.map",
+  "runtime~main.js": "/newsfeed/static/js/runtime~main.c45b74e8.js",
+  "runtime~main.js.map": "/newsfeed/static/js/runtime~main.c45b74e8.js.map",
+  "static/js/2.41d6f731.chunk.js": "/newsfeed/static/js/2.41d6f731.chunk.js",
+  "static/js/2.41d6f731.chunk.js.map": "/newsfeed/static/js/2.41d6f731.chunk.js.map",
+  "index.html": "/newsfeed/index.html",
+  "precache-manifest.eb6cdb362df1af17449e0279c8f09733.js": "/newsfeed/precache-manifest.eb6cdb362df1af17449e0279c8f09733.js",
+  "service-worker.js": "/newsfeed/service-worker.js",
+  "static/css/main.3ad8a4ad.chunk.css.map": "/newsfeed/static/css/main.3ad8a4ad.chunk.css.map"
 }
