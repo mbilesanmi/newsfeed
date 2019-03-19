@@ -1,0 +1,9 @@
+// ARTICLES
+export const ARTICLES = 'ARTICLES';
+
+// SOURCES
+export const SOURCES = 'SOURCES';
+
+// MESSAGE TYPES
+export const ERROR_MESSAGE = 'ERROR_MESSAGE';
+export const SUCCESS_MESSAGE = 'SUCCESS_MESSAGE';
