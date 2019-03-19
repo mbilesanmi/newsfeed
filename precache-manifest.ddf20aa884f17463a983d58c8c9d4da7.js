@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/newsfeed/static/css/main.3ad8a4ad.chunk.css"
   },
   {
-    "revision": "e80a346acfc0832b14251f5cd1c5df74",
+    "revision": "9179fdf0915adc3b52266433573e27ca",
     "url": "/newsfeed/index.html"
   }
 ];
