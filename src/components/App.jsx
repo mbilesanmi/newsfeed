@@ -39,7 +39,7 @@ class App extends Component {
 
   render = () => {
     return (
-      <main role="main" className="flex-shrink-0 container">
+      <>
         {/* Begin page content */}
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/login" component={Login} />
@@ -47,7 +47,7 @@ class App extends Component {
         <Route exact path="/source/:sourceId" component={Articles} />
         <Route exact path="/top-headlines" component={TopHeadlines} />
         <Route exact path="/all-news" component={TopHeadlines} />
-      </main>
+      </>
     )
   }
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
   BrowserRouter, Switch, Route
 } from 'react-router-dom';
@@ -14,16 +14,18 @@ import store from './store';
 const Routes = () => (
     <Provider store={store}>
         <BrowserRouter>
-            <Fragment>
+            <>
                 <header>
                     <Navbar />
                 </header>
                 <Switch>
-                    <Route exact path="/" component={Sources}/>
-                    <App />
+                    <main role="main" className="flex-shrink-0 container">
+                        <Route exact path="/" component={Sources}/>
+                        <App />
+                    </main>
                 </Switch>
                 <Footer/>
-            </Fragment>
+            </>
         </BrowserRouter>
     </Provider>
 );
