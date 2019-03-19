@@ -16,15 +16,16 @@ class Navbar extends Component {
     logout = () => {
         fire.auth().signOut()
             .then(() => {
-                toastr.success('Logout successful');
                 localStorage.removeItem('user');
                 this.setState({ isAuth: localStorage.getItem('user') });
+                window.location.replace('/login');
             })
             .catch((error) => toastr.error(error.message));
     }
 
     render() {
         const { isAuth } = this.state;
+
         return (
             <nav className="site-header sticky-top py-1 bg-dark">
                 <div className="container d-flex flex-column flex-md-row justify-content-between">
@@ -38,10 +39,13 @@ class Navbar extends Component {
                     <Link className="py-2 d-none d-md-inline-block" to="/sources">Sources</Link>
                     <Link className="py-2 d-none d-md-inline-block" to="/top-headlines">Top headlines</Link>
                     {
-                        isAuth
-                        ? <button className="py-2 d-none d-md-inline-block btn-link" onClick={this.logout}>
-                            Logout
-                        </button>
+                        isAuth ?
+                        <>
+                            <Link className="py-2 d-none d-md-inline-block" to="/dashboard">Dashboard</Link>
+                            <button className="py-2 d-none d-md-inline-block btn-link" onClick={this.logout}>
+                                Logout
+                            </button>
+                        </>
                         : <Link className="py-2 d-none d-md-inline-block" to="/login">Login</Link>
                     }
                 </div>

@@ -30,18 +30,18 @@ class Login extends Component {
                 setTimeout(window.location.reload(), 6000);
             })
             .catch(error => toastr.error(error.message));
-        }
+    }
+    
+    signup = (e) => {
+        e.preventDefault();
+        const { email, password } = this.state;
         
-        signup = (e) => {
-            e.preventDefault();
-            const { email, password } = this.state;
-            
-            fire.auth().createUserWithEmailAndPassword(email, password)
-            .then(() => {
-                toastr.success('Account created successfully');
-                setTimeout(window.location.reload(), 6000);
-            })
-            .catch(error => toastr.error(error.message));
+        fire.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => {
+            toastr.success('Account created successfully');
+            setTimeout(window.location.reload(), 6000);
+        })
+        .catch(error => toastr.error(error.message));
     }
 
     updateLoginForm = (e) => {

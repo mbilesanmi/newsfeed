@@ -1,13 +1,14 @@
 import firebase from 'firebase';
 
 const config = {
-    apiKey: "AIzaSyC5xF7un-w_AHDzvztnN0iRUqhUAfDww_o",
-    authDomain: "newsfeed-57656.firebaseapp.com",
-    databaseURL: "https://newsfeed-57656.firebaseio.com",
-    projectId: "newsfeed-57656",
-    storageBucket: "newsfeed-57656.appspot.com",
-    messagingSenderId: "953434587613"
+    apiKey: "AIzaSyBvkJKjP8pEUvn2KQ7tAn4AA3uktpxCZwc",
+    authDomain: "newsglob-845bc.firebaseapp.com",
+    databaseURL: "https://newsglob-845bc.firebaseio.com",
+    projectId: "newsglob-845bc",
+    storageBucket: "newsglob-845bc.appspot.com",
+    messagingSenderId: "269838949157"
 };
 
 const fire  = firebase.initializeApp(config);
+export const db = firebase.firestore(fire);
 export default fire;

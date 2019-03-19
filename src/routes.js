@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import App from './components/App';
 
-import HomePage from './components/Homepage/Home';
+import Sources from './components/Sources/Sources';
 import Footer from './components/common/Footer/Footer'
 import Navbar from './components/common/Navbar/Navbar';
 import store from './store';
@@ -19,7 +19,7 @@ const Routes = () => (
                     <Navbar />
                 </header>
                 <Switch>
-                    <Route exact path="/" component={HomePage}/>
+                    <Route exact path="/" component={Sources}/>
                     <App />
                 </Switch>
                 <Footer/>

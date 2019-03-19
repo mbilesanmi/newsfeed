@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import toastr from 'toastr';
+import firebase from 'firebase';
+import _ from 'lodash';
 
 // STYLING
 
@@ -17,18 +19,46 @@ import categories from '../../utils/categories';
 import countryList from '../../utils/countries';
 import languages from '../../utils/languages';
 
+// CONFIG
+import { db } from '../../config/Fire';
+
 class Sources extends Component {
     state = {
         countries: [],
         sources: [],
+        fav_sources: {},
         selectedLanguage: '',
         selectedCountry: '',
-        selectedCategory: ''
+        selectedCategory: '',
+        user_id: ''
     };
 
     componentDidMount = () => {
         this.props.getSources()
-            .then(() => this.setState({ sources: this.props.sources }));
+            .then(() => {
+                this.setState({
+                    user_id: localStorage.getItem('user'),
+                    sources: this.props.sources
+                }, () => {
+                    if (this.state.user_id) {
+                        this.getFavorites();
+                    } 
+                });
+            });
+    }
+
+    getFavorites = () => {
+        db.collection('fav_sources').doc(this.state.user_id)
+            .get()
+            .then(doc => {
+                if (doc.exists) {
+                    this.setState({ fav_sources: doc.data() });
+                }
+            })
+            .catch(function(error) {
+                toastr.error('Error fetching favs:', error);
+                console.log(error, 'err');
+            });
     }
 
     categoryFilterChanges = (category) => {
@@ -70,19 +100,53 @@ class Sources extends Component {
         });
     }
 
+    markFavorite = (e) => {
+        e.preventDefault();
+        const { user_id } = this.state;
+        const { name } = e.target;
+
+        const source = _.find(this.state.sources, { 'id': name })
+
+        db.collection('fav_sources').doc(user_id).set({
+            [name]: source,
+        }, { merge: true })
+            .then(() => {
+                toastr.success('Source favourited!');
+                this.getFavorites();
+            })
+            .catch(() => toastr.error('Could\'t favourite source!'));
+    }
+
+    removeFavorite = (e) => {
+        e.preventDefault();
+        const { user_id } = this.state;
+        const { name } = e.target;
+
+        db.collection('fav_sources').doc(user_id).update({
+            [name]: firebase.firestore.FieldValue.delete(),
+        })
+            .then(() => {
+                toastr.success('Source unfavourited!');
+                this.getFavorites();
+            })
+            .catch(() => toastr.error('Could\'t unfavourite source!'));
+    }
+
     render = () => {
         const {
+            fav_sources,
             selectedCategory,
             selectedCountry,
             selectedLanguage,
-            sources
+            sources,
+            user_id
         } = this.state;
 
         return (
             <>
                 <div className="position-relative overflow-hidden p-2 p-md-3 m-md-4 text-center bg-light">
-                    <div className="col-md-5 mx-auto my-3">
-                        <h1 className="display-4 font-weight-normal">Sources</h1>
+                    <div className="col-md-12 mx-auto my-3">
+                        <h2 className="font-weight-normal">Sources</h2>
                     </div>
                 </div>
 
@@ -137,6 +201,27 @@ class Sources extends Component {
                                         <Link className="" to={`source/${source.id}`}>
                                             See news
                                         </Link>
+                                        {
+                                            !user_id ?  ''
+                                            : source.id in fav_sources ?
+                                            <button
+                                                className="fas fa-heart"
+                                                name={source.id}
+                                                type="button"
+                                                data-toggle="tooltip"
+                                                data-placement="bottom"
+                                                title="Remove fav"
+                                                onClick={this.removeFavorite} />
+                                            : <button
+                                                className="far fa-heart"
+                                                name={source.id}
+                                                type="button"
+                                                data-toggle="tooltip"
+                                                data-placement="bottom"
+                                                title="Mark as fav"
+                                                onClick={this.markFavorite} />
+                                            
+                                        }
                                     </div>
                                 </div>
                             </div>
