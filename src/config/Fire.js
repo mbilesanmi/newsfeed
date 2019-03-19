@@ -1,12 +1,21 @@
 import firebase from 'firebase';
 
+const {
+    REACT_APP_apiKey,
+    REACT_APP_authDomain,
+    REACT_APP_databaseURL,
+    REACT_APP_projectId,
+    REACT_APP_storageBucket,
+    REACT_APP_messagingSenderId
+} = process.env;
+
 const config = {
-    apiKey: "AIzaSyBvkJKjP8pEUvn2KQ7tAn4AA3uktpxCZwc",
-    authDomain: "newsglob-845bc.firebaseapp.com",
-    databaseURL: "https://newsglob-845bc.firebaseio.com",
-    projectId: "newsglob-845bc",
-    storageBucket: "newsglob-845bc.appspot.com",
-    messagingSenderId: "269838949157"
+    apiKey: REACT_APP_apiKey,
+    authDomain: REACT_APP_authDomain,
+    databaseURL: REACT_APP_databaseURL,
+    projectId: REACT_APP_projectId,
+    storageBucket: REACT_APP_storageBucket,
+    messagingSenderId: REACT_APP_messagingSenderId
 };
 
 const fire  = firebase.initializeApp(config);

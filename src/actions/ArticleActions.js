@@ -4,7 +4,7 @@ import {
     ARTICLES, ERROR_MESSAGE, SUCCESS_MESSAGE
 } from './ActionTypes';
 
-// const { REACT_APP_apiUrl } = process.env;
+const { REACT_APP_news_apiKey } = process.env;
 
 export const passSuccessMessage = successMessage =>
   ({ type: SUCCESS_MESSAGE, successMessage });
@@ -26,7 +26,7 @@ const resolveErrors = (error) => {
 };
 
 export const getArticles = (sourceId = '', country='', category='', search='') => dispatch => {
-  let url = 'https://newsapi.org/v2/top-headlines?apiKey=74b2693e67c3460c81423e7d1d6d1508';
+  let url = `https://newsapi.org/v2/top-headlines?apiKey=${REACT_APP_news_apiKey}`;
 
   if (sourceId) {
     url = `${url}&sources=${sourceId}`
