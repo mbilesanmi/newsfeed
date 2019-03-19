@@ -6,8 +6,6 @@ import {
 
 const { REACT_APP_news_apiKey } = process.env;
 
-console.log(REACT_APP_news_apiKey, 'api');
-
 export const passSuccessMessage = successMessage =>
   ({ type: SUCCESS_MESSAGE, successMessage });
 
